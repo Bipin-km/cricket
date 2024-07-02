@@ -7,6 +7,7 @@ class Batter:
         self.name = name
         self.score = 0
         self.role = role
+        self.hit = False # True if the player has hit the ball
         self.batting_power = batting_power
         self.type = type
         self.neutral_img = pygame.transform.scale(pygame.image.load("./Images/batter_neutral.gif"),(90,90))
@@ -14,8 +15,6 @@ class Batter:
         if self.orientation:
             self.neutral_image = pygame.transform.flip(self.neutral_img, True, False)
         self.current_image = self.neutral_image
-
-
 
     def add_score(self, score):
         self.score += score
@@ -25,6 +24,9 @@ class Batter:
 
     def get_playing(self):
         self.playing = True
+    
+    def hit(self):
+        self.hit = True
 
     def get_name(self):
         return self.name
@@ -50,8 +52,6 @@ class Batter:
     
     def draw(self,screen):
         if self.role == "striker":
-            screen.blit(self.current_image, (self.x, self.y))
-        elif self.role == "non-striker":
             screen.blit(self.current_image, (self.x, self.y))
 
 
