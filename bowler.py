@@ -16,7 +16,6 @@ class Bowler:
         self.count = 0
         self.overs = 0
         self.run = False # True after space bar is pressed to bowl next ball
-        self.has_run = False # True if the player has run
 
     def get_bowling_speed(self):
         if self.bowling == 'fast':
@@ -44,7 +43,7 @@ class Bowler:
             self.overs +=1
 
     def get_stats(self):
-        return [f"Bowler: {self.name}", f"{self.runs_conceded} runs", f"{self.wickets} wickets",f"{self.overs} overs", f"{self.balls_bowled} balls bowled"]
+        return f"{self.name} : {self.runs_conceded} - {self.wickets} ({self.overs}.{self.balls_bowled % 6})"
 
 
     

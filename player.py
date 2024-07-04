@@ -1,58 +1,68 @@
 import pygame
 class Batter:
     def __init__(self,name,type,orientation,batting_power,role):
-        self.x = 350
-        self.y = 85
+        self.x = 600
+        self.y = 200
         self.playing = False
         self.name = name
         self.score = 0
+        self.balls_faced = 0
         self.role = role
-        self.hit = False # True if the player has hit the ball
+        self.bat_movement = False # True if the player has moved the bat for hitting the ball
+        self.hit = False # True if the player has hit the ball for collision
         self.batting_power = batting_power
         self.type = type
-        self.neutral_img = pygame.transform.scale(pygame.image.load("./Images/batter_neutral.gif"),(90,90))
+        self.initial_stance = [pygame.transform.scale(pygame.image.load("./Images/initial stance8.png"),(200,200)),
+                               pygame.transform.scale(pygame.image.load("./Images/initial stance7.png"),(200,200)),
+                               pygame.transform.scale(pygame.image.load("./Images/initial stance6.png"),(200,200)),
+                               pygame.transform.scale(pygame.image.load("./Images/initial stance5.png"),(200,200)),
+                               pygame.transform.scale(pygame.image.load("./Images/initial stance4.png"),(200,200)),
+                               pygame.transform.scale(pygame.image.load("./Images/initial stance3.png"),(200,200)),
+                               pygame.transform.scale(pygame.image.load("./Images/initial stance2.png"),(200,200)),
+                               pygame.transform.scale(pygame.image.load("./Images/initial stance1.png"),(200,200))
+                               ]
         self.orientation = orientation # 0 for right, 1 for left
         if self.orientation:
-            self.neutral_image = pygame.transform.flip(self.neutral_img, True, False)
-        self.current_image = self.neutral_image
+            self.initial_stance = [pygame.transform.flip(image, True, False) for image in self.initial_stance]
+        
+        self.current_index = 0
+        self.current_image = self.initial_stance[self.current_index]
 
     def add_score(self, score):
         self.score += score
 
-    def get_score(self):
-        return self.score
 
     def get_playing(self):
         self.playing = True
     
-    def hit(self):
-        self.hit = True
 
     def get_name(self):
         return self.name
     
     def get_role(self):
         return self.role
+
+    def get_stats(self):
+        return f"{self.name} : {self.score} ({self.balls_faced})"
     
-    def change_role(self,role):
-        self.role = role
+    def change_role(self):
+        if self.role == "striker":
+            self.role = "non-striker"
+        else:
+            self.role = "striker"
     
     def increase_score(self,runs):
         self.score += runs
     
-    def move(self, userInput):
-        if userInput[pygame.K_a] and self.orientation == 1 and self.role == "striker" and self.x > 340:
-            self.x -= 2
-        elif userInput[pygame.K_d] and self.orientation == 1 and self.role == "striker" and self.x < 350:
-            self.x += 2
-        if userInput[pygame.K_d] and self.orientation == 0 and self.role == "striker" and self.x < 360:
-                self.x += 2
-        elif userInput[pygame.K_a] and self.orientation == 0 and self.role == "striker" and self.x > 350:
-            self.x -= 2
     
-    def draw(self,screen):
-        if self.role == "striker":
-            screen.blit(self.current_image, (self.x, self.y))
-
+    def draw(self, screen, ball_thrown):
+        if ball_thrown:
+            if self.current_index < len(self.initial_stance) - 1:  # Assuming self.images holds the animation frames
+                self.current_index += 0.5
+        else:
+            self.current_index = 0
+    
+        self.current_image = self.initial_stance[round(self.current_index)]  # Update the current image based on the current index
+        screen.blit(self.current_image, (self.x, self.y))
 
 

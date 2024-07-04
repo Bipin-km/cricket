@@ -53,10 +53,6 @@ class Ball:
                 self.x += self.speed * self.swing_strength  # Change direction after bounce
             elif self.direction == 'right':
                 self.x -= self.speed * self.swing_strength  # Change direction after bounce
-
-        # Reset ball position if it goes off screen
-        if self.y < 150:
-            self.reset_position()
         
         # Update image index for rolling effect
         self.image_index = (self.image_index + 1) % len(self.images)

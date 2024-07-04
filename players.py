@@ -2,7 +2,7 @@ Team1 = [
     {
         "name": "Mookie Betts",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 95,
         "bowling": "none",
         "swing_strength": 0,
@@ -10,7 +10,7 @@ Team1 = [
     {
         "name": "Simon Katich",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 95,
         "bowling": "none",
         "swing_strength": 0
@@ -18,7 +18,7 @@ Team1 = [
     {
         "name": "Kabera Mokoko",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 95,
         "bowling": "none",
         "swing_strength": 0,
@@ -26,7 +26,7 @@ Team1 = [
     {
         "name": "Indiana Ford",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 80,
         "bowling": "fast",
         "swing_strength": 15
@@ -34,7 +34,7 @@ Team1 = [
     {
         "name": "Micheal Jessey",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 75,
         "bowling": "off_spin",
         "swing_strength": 20
@@ -42,7 +42,7 @@ Team1 = [
     {
         "name": "Harry Measey",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 70,
         "bowling": "leg_spin",
         "swing_strength": 25
@@ -50,7 +50,7 @@ Team1 = [
     {
         "name": "Terry London",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 50,
         "bowling": "fast",
         "swing_strength": 50
@@ -58,7 +58,7 @@ Team1 = [
     {
         "name": "Jerry Smith",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 40,
         "bowling": "medium",
         "swing_strength": 60,
@@ -66,7 +66,7 @@ Team1 = [
     {
         "name": "Thomas Brown",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 30,
         "bowling": "leg_spin",
         "swing_strength": 70,
@@ -74,7 +74,7 @@ Team1 = [
     {
         "name": "Printon Smith",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 20,
         "bowling": "medium",
         "swing_strength": 80,
@@ -82,7 +82,7 @@ Team1 = [
     {
         "name": "Crish Lee",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 20,
         "bowling": "fast",
         "swing_strength": 80,
@@ -93,7 +93,7 @@ Team2 = [
     {
         "name": "Ivan Betts",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 95,
         "bowling": "none",
         "swing_strength": 0,
@@ -101,7 +101,7 @@ Team2 = [
     {
         "name": "Aurthur Morgan",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 95,
         "bowling": "none",
         "swing_strength": 0
@@ -109,7 +109,7 @@ Team2 = [
     {
         "name": "John Marshton",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 95,
         "bowling": "none",
         "swing_strength": 0,
@@ -117,7 +117,7 @@ Team2 = [
     {
         "name": "Dutch VanderLinde",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 80,
         "bowling": "fast",
         "swing_strength": 15
@@ -125,7 +125,7 @@ Team2 = [
     {
         "name": "Leopold Linton",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 70,
         "bowling": "leg_spin",
         "swing_strength": 25
@@ -133,7 +133,7 @@ Team2 = [
     {
         "name": "Trefor London",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 50,
         "bowling": "fast",
         "swing_strength": 50
@@ -141,7 +141,7 @@ Team2 = [
     {
         "name": "Stanley Smith",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 40,
         "bowling": "medium",
         "swing_strength": 60,
@@ -149,7 +149,7 @@ Team2 = [
     {
         "name": "Korbin Lee",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 30,
         "bowling": "leg_spin",
         "swing_strength": 70,
@@ -157,7 +157,7 @@ Team2 = [
     {
         "name": "Chaffee Smith",
         "type": "Right hand Batter",
-        "orientation": "right",
+        "orientation": 0,
         "batting_power": 20,
         "bowling": "medium",
         "swing_strength": 80,
@@ -165,7 +165,7 @@ Team2 = [
     {
         "name": "Keiran Lee",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 20,
         "bowling": "fast",
         "swing_strength": 80,
@@ -173,7 +173,7 @@ Team2 = [
     {
         "name": "Abraham Berry",
         "type": "Left hand Batter",
-        "orientation": "left",
+        "orientation": 1,
         "batting_power": 60,
         "bowling": "medium",
         "swing_strength": 40,
