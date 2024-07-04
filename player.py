@@ -1,7 +1,7 @@
 import pygame
 class Batter:
     def __init__(self,name,type,orientation,batting_power,role):
-        self.x = 550
+        self.x = 600
         self.y = 0
         self.playing = False
         self.name = name
