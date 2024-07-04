@@ -2,7 +2,7 @@ import pygame
 class Batter:
     def __init__(self,name,type,orientation,batting_power,role):
         self.x = 550
-        self.y = -25
+        self.y = 0
         self.playing = False
         self.name = name
         self.score = 0
@@ -12,14 +12,8 @@ class Batter:
         self.hit = False # True if the player has hit the ball for collision
         self.batting_power = batting_power
         self.type = type
-        self.initial_stance = [pygame.transform.scale(pygame.image.load("./Images/initial stance8.png"),(225,375)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance7.png"),(225,375)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance6.png"),(225,375)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance5.png"),(225,375)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance4.png"),(225,375)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance3.png"),(225,375)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance2.png"),(225,375)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance1.png"),(225,375))
+        self.initial_stance = [pygame.transform.scale(pygame.image.load("./Images/initialstance2.png"),(180,300)),
+                               pygame.transform.scale(pygame.image.load("./Images/initialstance1.png"),(180,300))
                                ]
         self.orientation = orientation # 0 for right, 1 for left
         if self.orientation:
