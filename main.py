@@ -4,9 +4,11 @@ from player import Batter
 from bowler import Bowler
 from ball import Ball
 from players import Team1, Team2
+from stumps import Stumps
 
 ctypes.windll.user32.SetProcessDPIAware()
 
+stumps = Stumps()
 batters = [Batter(player["name"], player["type"], player["orientation"], player["batting_power"],"non-striker") for player in Team1]
 bowlers = [Bowler(player["name"], player["type"], player["bowling"], player["swing_strength"]) for player in Team2 if player["bowling"] != "none"]
 
@@ -60,6 +62,7 @@ while running:
     if ball_thrown:
         if ball.y > 150:
             ball.move()
+            stumps.start_collapse()
         else:
             ball.reset_position()
             current_bowler.bowling_in_progress = False
@@ -67,12 +70,14 @@ while running:
             striker.balls_faced += 1
             current_bowler.update_over()
             ball_thrown = False
-
+    stumps.update()
     
 
     screen.blit(background, (0,0))
+    stumps.draw(screen)
     ball.draw(screen)
     striker.draw(screen, ball_thrown)
+
 
     #Display Stats
     font = pygame.font.Font(None, 24)
@@ -83,7 +88,7 @@ while running:
     screen.blit(font.render(batter_2_stats, True, (255,255,255)), (950, 30))
     screen.blit(font.render(stats_bowler, True, (255,255,255)), (950, 50))
     pygame.display.flip()
-
+ 
 
     clock.tick(60)
 
