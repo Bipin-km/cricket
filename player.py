@@ -12,10 +12,10 @@ class Batter:
         self.hit = False # True if the player has hit the ball for collision
         self.batting_power = batting_power
         self.type = type
-        self.initial_stance = [pygame.transform.scale(pygame.image.load("./Images/initial stance8.png"),(250,350)),
-                               pygame.transform.scale(pygame.image.load("./Images/initial stance7.png"),(250,350)),
-                                 pygame.transform.scale(pygame.image.load("./Images/initial stance2.png"),(250,350)),
-                                    pygame.transform.scale(pygame.image.load("./Images/initial stance1.png"),(250,350)),
+        self.initial_stance = [pygame.transform.scale(pygame.image.load("./Images/triggermoment8.png"),(200,300)),
+                               pygame.transform.scale(pygame.image.load("./Images/triggermoment7.png"),(200,300)),
+                                 pygame.transform.scale(pygame.image.load("./Images/triggermoment2.png"),(200,300)),
+                                    pygame.transform.scale(pygame.image.load("./Images/triggermoment1.png"),(200,300)),
                                ]
         self.orientation = orientation # 0 for right, 1 for left
         if self.orientation:
