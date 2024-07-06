@@ -62,7 +62,7 @@ while running:
     if ball_thrown:
         if ball.y > 150:
             ball.move()
-            stumps.start_collapse()
+           # stumps.start_collapse()
         else:
             ball.reset_position()
             current_bowler.bowling_in_progress = False
@@ -70,7 +70,7 @@ while running:
             striker.balls_faced += 1
             current_bowler.update_over()
             ball_thrown = False
-    stumps.update()
+   # stumps.update()
     
 
     screen.blit(background, (0,0))
