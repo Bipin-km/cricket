@@ -5,10 +5,12 @@ from bowler import Bowler
 from ball import Ball
 from players import Team1, Team2
 from stumps import Stumps
+from wiki import Wiki
 import random
 
 ctypes.windll.user32.SetProcessDPIAware()
 
+wiki = Wiki()
 stumps = Stumps()
 batters = [Batter(player["name"], player["type"], player["orientation"], player["batting_power"],"non-striker") for player in Team1]
 bowlers = [Bowler(player["name"], player["type"], player["bowling"], player["swing_strength"]) for player in Team2 if player["bowling"] != "none"]
@@ -88,6 +90,7 @@ while running:
     screen.blit(background, (0,0))
     stumps.draw(screen)
     ball.draw(screen)
+    wiki.draw(screen, ball_thrown)
     striker.draw(screen, ball_thrown)
 
 
