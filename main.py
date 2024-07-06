@@ -5,6 +5,7 @@ from bowler import Bowler
 from ball import Ball
 from players import Team1, Team2
 from stumps import Stumps
+import random
 
 ctypes.windll.user32.SetProcessDPIAware()
 
@@ -16,6 +17,7 @@ batter_1 = batters[0]
 batter_2 = batters[1]
 batter_1.change_role()
 striker = batter_1
+non_striker = batter_2
 
 ball = Ball()
 
@@ -29,20 +31,24 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("RETRO_CRICKET")
 pygame.display.set_icon(pygame.image.load("./Images/OIG4.jpeg"))
 
-current_bowler_index = 0
-current_bowler = bowlers[current_bowler_index]
+current_bowler = random.choice(bowlers)
 over_count = 0
 ball_thrown = False
 running = True
 
 #background
 background = pygame.transform.scale(pygame.image.load("./Images/ground.jpg"),(1280,720))
+field = pygame.transform.scale(pygame.image.load("./Images/field_setup.jpg"),(1280,720))
 
 
-# def draw ():
-#     screen.blit(background, (0,0))
-#     screen.blit(striker, (350,85))
-#     pygame.display.flip()
+def draw_stats():
+    font = pygame.font.Font(None, 24)
+    stats_bowler = current_bowler.get_stats()
+    batter_1_stats = striker.get_stats()
+    batter_2_stats = non_striker.get_stats()
+    screen.blit(font.render(batter_1_stats, True, (255, 255, 255)), (950, 10))
+    screen.blit(font.render(batter_2_stats, True, (255, 255, 255)), (950, 30))
+    screen.blit(font.render(stats_bowler, True, (255, 255, 255)), (950, 50))
 
 while running:
     dt = clock.tick(60)/1000
@@ -68,10 +74,16 @@ while running:
             current_bowler.bowling_in_progress = False
             current_bowler.balls_bowled += 1
             striker.balls_faced += 1
-            current_bowler.update_over()
+            current_bowler = current_bowler.update_over(batter_1, batter_2,bowlers)
             ball_thrown = False
     stumps.update()
     
+    if batter_1.role == "striker":
+        striker = batter_1
+        non_striker = batter_2
+    else:
+        striker = batter_2
+        non_striker = batter_1
 
     screen.blit(background, (0,0))
     stumps.draw(screen)
@@ -80,13 +92,8 @@ while running:
 
 
     #Display Stats
-    font = pygame.font.Font(None, 24)
-    stats_bowler = current_bowler.get_stats()
-    batter_1_stats = batter_1.get_stats()
-    batter_2_stats = batter_2.get_stats()
-    screen.blit(font.render(batter_1_stats, True, (255,255,255)), (950, 10))
-    screen.blit(font.render(batter_2_stats, True, (255,255,255)), (950, 30))
-    screen.blit(font.render(stats_bowler, True, (255,255,255)), (950, 50))
+    draw_stats()
+    
     pygame.display.flip()
  
 

@@ -36,11 +36,15 @@ class Bowler:
         ball.swing_strength = random.uniform(0, 0.5)
         ball.direction = random.choice(['straight', 'left', 'right'])   
         ball.bounced = False
-        return ball
 
-    def update_over(self):
+    def update_over(self,st1: Batter,st2: Batter, arr):
         if self.balls_bowled %6 == 0:
+            st1.change_role()
+            st2.change_role()
             self.overs +=1
+            return random.choice(arr)
+        else:
+            return self
 
     def get_stats(self):
         return f"{self.name} : {self.runs_conceded} - {self.wickets} ({self.overs}.{self.balls_bowled % 6})"
