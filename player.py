@@ -56,8 +56,8 @@ class Batter:
         else:
             if self.current_index > 1:
                 self.current_index = 0
-            self.current_image = self.ready_stance[round(self.current_index)]
-            self.current_index += 0.033
+            self.current_image = self.initial_stance[round(self.current_index)]
+            self.current_index += 0.02
             
 
             
