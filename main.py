@@ -39,7 +39,7 @@ ball_thrown = False
 running = True
 
 #background
-background = pygame.transform.scale(pygame.image.load("./Images/ground.jpg"),(1280,720))
+background = pygame.transform.scale(pygame.image.load("./Images/ground.png"),(1280,720))
 field = pygame.transform.scale(pygame.image.load("./Images/field_setup.jpg"),(1280,720))
 
 

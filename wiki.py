@@ -3,10 +3,10 @@ import pygame
 class Wiki:
     def __init__(self):
         self.x = 550
-        self.y = -10
+        self.y = 10
         self.name = "Wiki"
-        self.stances = [pygame.transform.scale(pygame.image.load("./Images/wicket_keeper1.png"),(100,100)),
-                        pygame.transform.scale(pygame.image.load("./Images/wicket_keeper2.png"),(100,100))
+        self.stances = [pygame.transform.scale(pygame.image.load("./Images/wicket_keeper1.png"),(100,150)),
+                        pygame.transform.scale(pygame.image.load("./Images/wicket_keeper2.png"),(100,150))
                         ]
         self.current_index = 0
         self.current_image = self.stances[0]

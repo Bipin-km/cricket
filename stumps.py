@@ -2,10 +2,11 @@ import pygame
 
 class Stumps:
     def __init__(self):
-        self.x = 600
-        self.y = 80
+        self.x = 605
+        self.y = 180
+
         self.collapse_frames = [
-            pygame.transform.scale(pygame.image.load(f"./Images/Stump{i+1}.png"), (80, 120))
+            pygame.transform.scale(pygame.image.load(f"./Images/Stump{i+1}.png"), (70, 100))
             for i in range(6)
         ]
         self.image_index = 0
