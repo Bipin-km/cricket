@@ -3,7 +3,7 @@ import pygame
 class Wiki:
     def __init__(self):
         self.x = 550
-        self.y = 10
+        self.y = 25
         self.name = "Wiki"
         self.stances = [pygame.transform.scale(pygame.image.load("./Images/wicket_keeper1.png"),(100,150)),
                         pygame.transform.scale(pygame.image.load("./Images/wicket_keeper2.png"),(100,150))
