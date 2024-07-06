@@ -68,7 +68,7 @@ while running:
     if ball_thrown:
         if ball.y > 150:
             ball.move()
-            stumps.start_collapse()
+           # stumps.start_collapse()
         else:
             ball.reset_position()
             current_bowler.bowling_in_progress = False
@@ -76,7 +76,7 @@ while running:
             striker.balls_faced += 1
             current_bowler = current_bowler.update_over(batter_1, batter_2,bowlers)
             ball_thrown = False
-    stumps.update()
+   # stumps.update()
     
     if batter_1.role == "striker":
         striker = batter_1
