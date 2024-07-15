@@ -89,7 +89,7 @@ while running:
 
     screen.blit(background, (0,0))
     stumps.draw(screen)
-    ball.draw(screen)
+    ball.draw(screen,ball_thrown)
     wiki.draw(screen, ball_thrown)
     striker.draw(screen, ball_thrown)
 
