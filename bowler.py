@@ -1,13 +1,13 @@
 import pygame
 import random
-from ball import Ball
 from player import Batter
 
 class Bowler:
-    def __init__(self, name, type,bowling, swing_strength):
+    def __init__(self, name, type,bowling, swing_strength, speed):
         self.bowling_in_progress = False
         self.name = name
         self.type = type
+        self.speed = speed
         self.bowling = bowling
         self.swing_strength = swing_strength
         self.runs_conceded = 0
@@ -27,15 +27,8 @@ class Bowler:
         else:
             self.bowling_speed = random.uniform(60, 80)
 
-    def bowl_ball(self, ball: Ball):
+    def bowl_ball(self):
         self.balls_bowled += 1
-        ball.reset_position()
-        # ball.change_orientation(self.st)
-        ball.bounce_point = ball.get_random_bounce_point()
-        ball.swing = random.choice(['in', 'out'])
-        ball.swing_strength = random.uniform(0, 0.5)
-        ball.direction = random.choice(['straight', 'left', 'right'])   
-        ball.bounced = False
 
     def update_over(self,st1: Batter,st2: Batter, arr):
         if self.balls_bowled %6 == 0:

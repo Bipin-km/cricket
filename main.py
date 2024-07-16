@@ -13,7 +13,7 @@ ctypes.windll.user32.SetProcessDPIAware()
 wiki = Wiki()
 stumps = Stumps()
 batters = [Batter(player["name"], player["type"], player["orientation"], player["batting_power"],"non-striker") for player in Team1]
-bowlers = [Bowler(player["name"], player["type"], player["bowling"], player["swing_strength"]) for player in Team2 if player["bowling"] != "none"]
+bowlers = [Bowler(player["name"], player["type"], player["bowling"], player["swing_strength"], player["speed"]) for player in Team2 if player["bowling"] != "none"]
 
 batter_1 = batters[0]
 batter_2 = batters[1]
@@ -67,12 +67,13 @@ while running:
         ball_thrown = True
         current_bowler.bowling_in_progress = True
     
+    
     if ball_thrown:
         if ball.y > 150:
-            ball.move()
+            ball.move(bowler=current_bowler)
            # stumps.start_collapse()
         else:
-            ball.reset_position()
+            ball.reset_position(striker)
             current_bowler.bowling_in_progress = False
             current_bowler.balls_bowled += 1
             striker.balls_faced += 1
@@ -91,7 +92,7 @@ while running:
     stumps.draw(screen)
     ball.draw(screen,ball_thrown)
     wiki.draw(screen, ball_thrown)
-    striker.draw(screen, ball_thrown)
+    striker.draw(screen, ball_thrown,keys)
 
 
     #Display Stats

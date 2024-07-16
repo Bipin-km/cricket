@@ -2,12 +2,12 @@ import pygame
 import random
 import math
 from player import Batter
+from bowler import Bowler
 
 class Ball:
     def __init__(self):
-        self.reset_position()
-        self.speed = 5
-        self.batter_orientaion = "right"
+        self.x = 640
+        self.y = 722
         self.swing_strength = random.uniform(0, 0.5)
         self.direction = random.choice(['straight', 'left', 'right'])
         self.images = [
@@ -27,7 +27,7 @@ class Ball:
         self.bounce_point = self.get_random_bounce_point()
         self.bounced = False
 
-    def reset_position(self):
+    def reset_position(self, st: Batter):
         self.x = 640
         self.y = 722
         self.bounce_point = self.get_random_bounce_point()
@@ -36,6 +36,10 @@ class Ball:
         self.target_index = 0  # Reset target index
         self.swing_strength = random.uniform(0, 0.5)
         self.direction = random.choice(['straight', 'left', 'right'])
+        st.hit = False
+        st.bat_movement = False
+        st.movement_index = 0
+        st.input = None
 
     def get_random_bounce_point(self):
         x_min, x_max = 500, 660
@@ -45,7 +49,8 @@ class Ball:
     def change_orientation(self, st: Batter):
         self.batter_orientation = st.orientation
     
-    def move(self):
+    def move(self, bowler: Bowler):
+        speed = bowler.speed
         if not self.bounced:
             # Calculate direction vector to bounce point
             dx = self.bounce_point[0] - self.x
@@ -56,19 +61,18 @@ class Ball:
                 dy /= distance
 
             # Move ball towards bounce point with consistent speed
-            self.x += dx * self.speed
-            self.y += dy * self.speed
+            self.x += dx * speed
+            self.y += dy * speed
 
             # Check if ball reached the bounce point
-            if abs(self.x - self.bounce_point[0]) < self.speed and abs(self.y - self.bounce_point[1]) < self.speed:
+            if abs(self.x - self.bounce_point[0]) < speed and abs(self.y - self.bounce_point[1]) < speed:
                 self.bounced = True  # Ball has reached the bounce point
-                self.target_index = 0  # Reset target index for display after bounce
         else:
-            self.y -= self.speed
+            self.y -= speed + random.uniform(2,3)
             if self.direction == 'left':
-                self.x += self.speed * self.swing_strength  # Change direction after bounce
+                self.x += speed * self.swing_strength  # Change direction after bounce
             elif self.direction == 'right':
-                self.x -= self.speed * self.swing_strength  # Change direction after bounce
+                self.x -= speed * self.swing_strength  # Change direction after bounce
         
         # Update image index for rolling effect
         self.image_index = (self.image_index + 1) % len(self.images)

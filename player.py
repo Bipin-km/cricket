@@ -11,6 +11,11 @@ class Batter:
         self.hit = False # True if the player has hit the ball for collision
         self.batting_power = batting_power
         self.type = type
+        self.defense = [pygame.transform.scale(pygame.image.load("./Images/defence1.png"),(180,250)),
+                        pygame.transform.scale(pygame.image.load("./Images/defence2.png"),(180,250)),]
+        self.cover_drive = [pygame.transform.scale(pygame.image.load("./Images/coverdrive1.png"),(180,250)),
+                            pygame.transform.scale(pygame.image.load("./Images/coverdrive2.png"),(180,250)),
+                            pygame.transform.scale(pygame.image.load("./Images/coverdrive3.png"),(180,250)),]       
         self.initial_stance = [pygame.transform.scale(pygame.image.load("./Images/initialstance2.png"),(180,250)),
                                pygame.transform.scale(pygame.image.load("./Images/initialstance1.png"),(180,250))
                                ]
@@ -28,8 +33,11 @@ class Batter:
         if self.orientation:
             self.initial_stance = [pygame.transform.flip(image, True, False) for image in self.initial_stance]
             self.ready_stance = [pygame.transform.flip(image, True, False) for image in self.ready_stance]
-        
+            self.defense = [pygame.transform.flip(image, True, False) for image in self.defense]
+            self.cover_drive = [pygame.transform.flip(image, True, False) for image in self.cover_drive]
+        self.input = None
         self.current_index = 0
+        self.movement_index = 0
         self.current_image = self.initial_stance[self.current_index]
 
     def add_score(self, score):
@@ -48,20 +56,30 @@ class Batter:
         self.score += runs
     
     
-    def draw(self, screen, ball_thrown):
-        if ball_thrown:
+    def draw(self, screen, ball_thrown,userInput):
+        if (userInput[pygame.K_a] or userInput[pygame.K_s]) and ball_thrown and not self.bat_movement:
+            self.bat_movement = True
+            self.input = 'a' if userInput[pygame.K_a] else 's'
+        
+        if self.bat_movement:
+            if self.input == 's':
+                if self.movement_index < 1:
+                    self.movement_index += 0.1
+                self.current_image = self.defense[int(self.movement_index)]
+            else :
+                if self.movement_index < 2:
+                    self.movement_index += 0.1
+                self.current_image = self.cover_drive[int(self.movement_index)]
+
+        
+        elif ball_thrown and not self.bat_movement:
             if self.current_index < len(self.ready_stance) - 1:  # Assuming self.images holds the animation frames
                 self.current_index += 0.5
-                self.current_image = self.ready_stance[int(self.current_index)]
+            self.current_image = self.ready_stance[int(self.current_index)]
         else:
             if self.current_index > 1:
                 self.current_index = 0
             self.current_image = self.initial_stance[round(self.current_index)]
-            self.current_index += 0.02
-            
-
-            
-    
         screen.blit(self.current_image, (self.x, self.y))
 
 
