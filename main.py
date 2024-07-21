@@ -69,17 +69,16 @@ while running:
     
     
     if ball_thrown:
-        if ball.y > 150:
-            ball.move(bowler=current_bowler)
-           # stumps.start_collapse()
+        if ball.y > 110:
+            ball.move(bowler=current_bowler, stump=stumps, wiki=wiki)
         else:
-            ball.reset_position(striker)
-            current_bowler.bowling_in_progress = False
-            current_bowler.balls_bowled += 1
-            striker.balls_faced += 1
-            current_bowler = current_bowler.update_over(batter_1, batter_2,bowlers)
-            ball_thrown = False
-   # stumps.update()
+                pygame.time.wait(1000)
+                ball.reset_position(striker, stumps, wiki)
+                current_bowler.bowling_in_progress = False
+                current_bowler.balls_bowled += 1
+                striker.balls_faced += 1
+                current_bowler = current_bowler.update_over(batter_1, batter_2,bowlers)
+                ball_thrown = False
     
     if batter_1.role == "striker":
         striker = batter_1

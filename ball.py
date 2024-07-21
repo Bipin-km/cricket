@@ -3,6 +3,8 @@ import random
 import math
 from player import Batter
 from bowler import Bowler
+from stumps import Stumps
+from wiki import Wiki
 
 class Ball:
     def __init__(self):
@@ -27,19 +29,21 @@ class Ball:
         self.bounce_point = self.get_random_bounce_point()
         self.bounced = False
 
-    def reset_position(self, st: Batter):
+    def reset_position(self, st: Batter, stump: Stumps, wiki: Wiki):
         self.x = 640
         self.y = 722
         self.bounce_point = self.get_random_bounce_point()
         self.bounced = False
         self.image_index = 0
         self.target_index = 0  # Reset target index
-        self.swing_strength = random.uniform(0, 0.5)
+        self.swing_strength = random.uniform(0, 0.2)
         self.direction = random.choice(['straight', 'left', 'right'])
         st.hit = False
         st.bat_movement = False
         st.movement_index = 0
         st.input = None
+        stump.reset()
+        wiki.reset()
 
     def get_random_bounce_point(self):
         x_min, x_max = 500, 660
@@ -49,7 +53,7 @@ class Ball:
     def change_orientation(self, st: Batter):
         self.batter_orientation = st.orientation
     
-    def move(self, bowler: Bowler):
+    def move(self, bowler: Bowler, stump: Stumps, wiki: Wiki):
         speed = bowler.speed
         if not self.bounced:
             # Calculate direction vector to bounce point
@@ -64,19 +68,38 @@ class Ball:
             self.x += dx * speed
             self.y += dy * speed
 
+            # Move wiki towards bounce point
+            if self.bounce_point[0] > (wiki.x+40):
+                diff = self.bounce_point[0] - (wiki.x+45)
+                if diff > 2:
+                    wiki.x += 2
+                else:
+                    wiki.x += 1
+            elif self.bounce_point[0] < (wiki.x+40):
+                diff = abs((wiki.x+45) - self.bounce_point[0])
+                if diff >2:
+                    wiki.x -= 2
+                else:
+                    wiki.x -= 1
             # Check if ball reached the bounce point
             if abs(self.x - self.bounce_point[0]) < speed and abs(self.y - self.bounce_point[1]) < speed:
                 self.bounced = True  # Ball has reached the bounce point
         else:
-            self.y -= speed + random.uniform(2,3)
+            self.y -= speed + 3
             if self.direction == 'left':
-                self.x += speed * self.swing_strength  # Change direction after bounce
+                self.x += self.swing_strength  # Change direction after bounce
+                wiki.x += self.swing_strength   # Move wiki in the same direction
             elif self.direction == 'right':
-                self.x -= speed * self.swing_strength  # Change direction after bounce
+                self.x -= self.swing_strength  # Change direction after bounce
+                wiki.x -= self.swing_strength  # Move wiki in the same direction
         
+
         # Update image index for rolling effect
         self.image_index = (self.image_index + 1) % len(self.images)
         self.current_image = self.images[self.image_index]
+
+        if stump.rect.collidepoint(self.x, self.y):
+            stump.collapse_started = True
 
     def draw(self, screen, ball_thrown):
         screen.blit(self.current_image, (self.x, self.y))
