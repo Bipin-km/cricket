@@ -79,7 +79,7 @@ while running:
             striker.balls_faced += 1
             current_bowler = current_bowler.update_over(batter_1, batter_2,bowlers)
             ball_thrown = False
-   # stumps.update()
+    #stumps.update()
     
     if batter_1.role == "striker":
         striker = batter_1
