@@ -1,4 +1,5 @@
 import pygame
+import random
 class Batter:
     def __init__(self,name,type,orientation,batting_power,role):
         self.x = 570
@@ -11,6 +12,8 @@ class Batter:
         self.hit = False # True if the player has hit the ball for collision
         self.batting_power = batting_power
         self.type = type
+        self.collision_rect = [pygame.Rect(10, 32, 78, 135),
+                               pygame.Rect(41,102,117,130)]
         self.defense = [pygame.transform.scale(pygame.image.load("./Images/defence1.png"),(180,250)),
                         pygame.transform.scale(pygame.image.load("./Images/defence2.png"),(180,250)),]
         self.cover_drive = [pygame.transform.scale(pygame.image.load("./Images/coverdrive1.png"),(180,250)),
@@ -31,14 +34,21 @@ class Batter:
                              ]
         self.orientation = orientation # 0 for right, 1 for left
         if self.orientation:
+            self.x -= 25
+        if self.orientation:
             self.initial_stance = [pygame.transform.flip(image, True, False) for image in self.initial_stance]
             self.ready_stance = [pygame.transform.flip(image, True, False) for image in self.ready_stance]
             self.defense = [pygame.transform.flip(image, True, False) for image in self.defense]
             self.cover_drive = [pygame.transform.flip(image, True, False) for image in self.cover_drive]
+            self.collision_rect = [pygame.Rect(180 - rect.x - rect.width - 20, rect.y, rect.width, rect.height) for rect in self.collision_rect]
+            self.collision_rect[0][0] += 30
         self.input = None
+        self.hit = False
+        self.run = 0
         self.current_index = 0
         self.movement_index = 0
         self.current_image = self.initial_stance[self.current_index]
+        self.rect_to_check = (0,0,0,0)
 
     def add_score(self, score):
         self.score += score
@@ -55,7 +65,22 @@ class Batter:
     def increase_score(self,runs):
         self.score += runs
     
-    
+    def get_bat_collision_rects(self):
+        if self.input == 's':
+            # Defense collision rect
+            self.rect_to_check = self.collision_rect[1].move(self.x, self.y)
+        elif self.input == 'a':
+            # Cover drive collision rect
+            self.rect_to_check = self.collision_rect[0].move(self.x, self.y)
+        return self.rect_to_check
+
+
+    def determine_runs(self):
+        if self.input == 's':
+            self.run = 0  # Defensive shots usually result in lower runs
+        elif self.input == 'a':
+            self.run = random.choice([1,2,4,6])  # Cover drive usually results in boundaries
+
     def draw(self, screen, ball_thrown,userInput):
         if (userInput[pygame.K_a] or userInput[pygame.K_s]) and ball_thrown and not self.bat_movement:
             self.bat_movement = True

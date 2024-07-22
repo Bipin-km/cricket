@@ -9,8 +9,8 @@ Team1 = [
     },
     {
         "name": "Simon Katich",
-        "type": "Right hand Batter",
-        "orientation": 0,
+        "type": "Left hand Batter",
+        "orientation": 1,
         "batting_power": 95,
         "bowling": "none",
         "swing_strength": 0
@@ -29,7 +29,7 @@ Team1 = [
         "orientation": 0,
         "batting_power": 80,
         "bowling": "fast",
-        "speed": 8,
+        "speed": 9,
         "swing_strength": 15
     },
     {
@@ -38,7 +38,7 @@ Team1 = [
         "orientation": 1,
         "batting_power": 75,
         "bowling": "off_spin",
-        "speed": 4,
+        "speed": 5,
         "swing_strength": 20
     },
     {
@@ -47,7 +47,7 @@ Team1 = [
         "orientation": 0,
         "batting_power": 70,
         "bowling": "leg_spin",
-        "speed": 5,
+        "speed": 6,
         "swing_strength": 25
     },
     {
@@ -56,7 +56,7 @@ Team1 = [
         "orientation": 1,
         "batting_power": 50,
         "bowling": "fast",
-        "speed": 8,
+        "speed": 9,
         "swing_strength": 50
     },
     {
@@ -65,7 +65,7 @@ Team1 = [
         "orientation": 0,
         "batting_power": 40,
         "bowling": "medium",
-        "speed": 6,
+        "speed": 7,
         "swing_strength": 60,
     },
     {
@@ -74,7 +74,7 @@ Team1 = [
         "orientation": 1,
         "batting_power": 30,
         "bowling": "leg_spin",
-        "speed": 5,
+        "speed": 6,
         "swing_strength": 70,
     },
     {
@@ -83,7 +83,7 @@ Team1 = [
         "orientation": 0,
         "batting_power": 20,
         "bowling": "medium",
-        "speed": 6,
+        "speed": 7,
         "swing_strength": 80,
     },
     {
@@ -92,7 +92,7 @@ Team1 = [
         "orientation": 1,
         "batting_power": 20,
         "bowling": "fast",
-        "speed": 8,
+        "speed": 9,
         "swing_strength": 80,
     }
 ]
@@ -128,7 +128,7 @@ Team2 = [
         "orientation": 0,
         "batting_power": 80,
         "bowling": "fast",
-        "speed": 8,
+        "speed": 9,
         "swing_strength": 15
     },
     {
@@ -137,7 +137,7 @@ Team2 = [
         "orientation": 0,
         "batting_power": 70,
         "bowling": "leg_spin",
-        "speed": 5,
+        "speed": 6,
         "swing_strength": 25
     },
     {
@@ -146,7 +146,7 @@ Team2 = [
         "orientation": 1,
         "batting_power": 50,
         "bowling": "fast",
-        "speed": 8,
+        "speed": 9,
         "swing_strength": 50
     },
     {
@@ -155,7 +155,7 @@ Team2 = [
         "orientation": 0,
         "batting_power": 40,
         "bowling": "medium",
-        "speed": 6,
+        "speed": 7,
         "swing_strength": 60,
     },
     {
@@ -164,7 +164,7 @@ Team2 = [
         "orientation": 1,
         "batting_power": 30,
         "bowling": "leg_spin",
-        "speed": 5,
+        "speed": 6,
         "swing_strength": 70,
     },
     {
@@ -173,7 +173,7 @@ Team2 = [
         "orientation": 0,
         "batting_power": 20,
         "bowling": "medium",
-        "speed": 6,
+        "speed": 7,
         "swing_strength": 80,
     },
     {
@@ -182,7 +182,7 @@ Team2 = [
         "orientation": 1,
         "batting_power": 20,
         "bowling": "fast",
-        "speed": 8,
+        "speed": 9,
         "swing_strength": 80,
     },
     {
@@ -191,7 +191,7 @@ Team2 = [
         "orientation": 1,
         "batting_power": 60,
         "bowling": "medium",
-        "speed": 6,
+        "speed": 7,
         "swing_strength": 40,
     }
 ]

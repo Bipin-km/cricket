@@ -4,7 +4,7 @@ class Stumps:
     def __init__(self):
         self.x = 605
         self.y = 180
-        self.rect = pygame.Rect(622, 188, 28,85)  # top left x, top left y, width, height
+        self.rect = pygame.Rect(615, 188, 28,85)  # top left x, top left y, width, height
         self.collapse_frames = [
             pygame.transform.scale(pygame.image.load(f"./Images/Stump{i+1}.png"), (70, 100))
             for i in range(6)
