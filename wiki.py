@@ -15,8 +15,12 @@ class Wiki:
         if  ball_thrown:
             if self.current_index < 1:
                 self.current_index += 0.1
-        else:
-           self.current_index = 0
         self.current_image = self.stances[round(self.current_index)]
         screen.blit(self.current_image, (self.x, self.y))
+    
         
+    def reset(self):
+        self.x = 550
+        self.y = 25
+        self.current_index = 0
+        self.current_image = self.stances[0]

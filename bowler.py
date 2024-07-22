@@ -17,15 +17,6 @@ class Bowler:
         self.overs = 0
         self.run = False # True after space bar is pressed to bowl next ball
 
-    def get_bowling_speed(self):
-        if self.bowling == 'fast':
-            self.bowling_speed = random.uniform(130, 150)
-        elif self.bowling == 'medium':
-            self.bowling_speed = random.uniform(100, 120)
-        elif self.bowling == 'leg_spin':
-            self.bowling_speed = random.uniform(80, 100)
-        else:
-            self.bowling_speed = random.uniform(60, 80)
 
     def bowl_ball(self):
         self.balls_bowled += 1
