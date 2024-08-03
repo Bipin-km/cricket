@@ -67,6 +67,7 @@ selected_overs = 0
 total_overs = 0
 message_text = None
 how_to_play_dialog = False
+ag = False
 
 # background
 background = pygame.transform.scale(pygame.image.load("./Images/ground.png"), (1280, 720))
@@ -199,17 +200,16 @@ def draw_result():
 
 
 def draw_win_loss_message():
-    overlay = pygame.Surface((1280, 70))
-    overlay.set_alpha(220)
-    overlay.fill(DARK_BLUE)
-    screen.blit(overlay, (0, 288))
     runs_per_over = total_score / selected_overs
     font = pygame.font.Font(None, 50)
     if runs_per_over > 10:
         message = f"Congratulations! You Won!"
     else:
         message = f"You Lost!! Better Luck Next Time!"
-    draw_text(message,font_large, WHITE, 550, 330)
+    draw_text(message,font_large, BLACK, 550, 330)
+    if runs_per_over > 10:
+        return True
+    return False
 
 def reset_game():
     global total_score, total_wickets, total_balls, ball_thrown, ball, current_bowler, batter_1, batter_2, striker, non_striker, result_active, main_menu, overs_menu, state_game, state_paused, how_to_play_dialog
@@ -235,7 +235,7 @@ def reset_game():
     striker = batter_1
     non_striker = batter_2
     main_menu = True
-    overs_menu, state_game, state_paused, how_to_play_dialog, result_active = False, False, False, False, False
+    overs_menu, state_game, state_paused, how_to_play_dialog, result_active,ag = False, False, False, False, False, False
 
 
 while running:
@@ -338,6 +338,7 @@ while running:
                             screen.blit(pygame.font.Font(None, 36).render(f"All Out!", True, (255, 255, 255)), (600.460))
                             pygame.time.wait(1000)
                             pygame.display.flip()
+                            ag = True
                             result_active = True
                             state_resumed = False
                             ball_thrown = False
@@ -354,6 +355,7 @@ while running:
                         screen.blit(pygame.font.Font(None, 36).render(f"Overs Finished!", True, (255, 255, 255)), (600, 460))
                         pygame.time.wait(1000)
                         pygame.display.flip()
+                        ag = True
                         result_active = True
                         state_resumed = False
                         ball_thrown = False
@@ -383,13 +385,25 @@ while running:
                     state_resumed = False
         
         if result_active:
-            screen.blit(pygame.transform.scale(pygame.image.load("./Images/ground.jpg"), (1280, 720)), (0, 0))
-            draw_result()
-            draw_win_loss_message()
-            menu_button = draw_button("Main Menu", font_large, GRAY,920, 288, 350, 69)
+            if ag:
+                screen.blit(pygame.transform.scale(pygame.image.load("./Images/ground.jpg"), (1280, 720)), (0, 0))
+                draw_result()
+                pygame.display.flip()
+                pygame.time.wait(2500)
+                gg = draw_win_loss_message()
+                if gg:
+                    gg_image = pygame.transform.scale(pygame.image.load("./Images/winning.jpg"), (1280, 720))
+                else:
+                    gg_image = pygame.transform.scale(pygame.image.load("./Images/losing.png"), (1280, 720))
+            ag = False
+
+            screen.blit(gg_image, (0, 0))
+            a = draw_win_loss_message()
+            menu_button = draw_button("Main Menu", font_large, GRAY,500, 400, 350, 69)
             if mouse_clicked:
                 if menu_button.collidepoint(x, y):
                     reset_game()
+            pygame.display.flip()
         pygame.display.flip()
     
     pygame.display.flip()
